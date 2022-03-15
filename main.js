@@ -11,7 +11,7 @@ window.addEventListener('load',()=>{
         let tarea = document.querySelector('.tarea').value;
 
         if(tarea.length > 0){ 
-            contenedorTareas.innerHTML += `<li><p>${tarea}</p><a class="btnEliminar">Eliminar</a></li>`;
+            contenedorTareas.innerHTML += `<li><p>${tarea}</p><div class="btns"><a class="btnsEliminar">Eliminar</a><a class="btnsEditar">Editar</a></div></li>`;
         }else{
              alert('Por favor ingrese una tarea');   
         }
@@ -21,28 +21,51 @@ window.addEventListener('load',()=>{
     
     });
 
-        contenedorTareas.addEventListener('click',(e)=>{
-           
-           if (((e.target.parentElement)).tagName == 'LI' && (e.target).previousSibling.tagName == 'P') {
+    let test = document.querySelector(".test");
 
-            (e.target.parentElement).remove();
+  
+    
+
+ 
+
+
+          contenedorTareas.addEventListener('click',(e)=>{
             
-           }
+            // ((e.target.parentElement)).tagName == 'LI' && (e.target).previousSibling.tagName == 'P'
 
-            
-          
-           
-               
+             if (e.target.textContent == "Eliminar"){
 
+              let confirmacion = confirm("¿Seguro que desea eliminar esta tarea?")
+              
+              if(confirmacion){
+                (e.target.parentElement).parentElement.remove();
+              }else{
+                  return;
+              }
+
+
+             }else if(e.target.textContent == "Editar"){
+                    let tareaEditada = prompt("Edite su tarea");
+                    
+                     if(tareaEditada.length > 0 ){
+                        (e.target.parentElement).parentElement.firstChild.textContent = tareaEditada; 
+                     }else{
+                         alert("Entrada vacía");
+                     }                       
+                        
+                            
+                      
+                            
+                    
+                       
+             }  
                 
-        });
+          });
+
+ 
     
 
-   
-    
-
-   
-    
+     
 
 });
 
